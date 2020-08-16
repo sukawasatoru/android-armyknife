@@ -2,6 +2,7 @@ class Depends {
     static final gradle = new Gradle()
     static final kotlin = new Kotlin()
     static final test = new Test()
+    static final tinyport = new Tinyport()
 
     static class Gradle {
         final android = "com.android.tools.build:gradle:$Versions.gradle.android"
@@ -20,5 +21,9 @@ class Depends {
         final junit = "junit:junit:4.12"
         final truth = "com.google.truth:truth:1.0.1"
         final truthJava8 = "com.google.truth.extensions:truth-java8-extension:1.0.1"
+    }
+
+    static class Tinyport {
+        final logger = "jp.tinyport:logger:0.1.0"
     }
 }

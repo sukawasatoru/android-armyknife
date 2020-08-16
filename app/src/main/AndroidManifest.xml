@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.tinyport.tinyapplication">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jp.tinyport.armyknife">
 
     <application
         android:allowBackup="false"
-        android:label="Tiny app"
+        android:label="Army knife"
+        android:name=".core.App"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material">
         <activity
             android:name=".MainActivity"
-            android:label="Tiny MainActivity">
+            android:label="Army knife">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
