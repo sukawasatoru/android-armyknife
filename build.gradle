@@ -1,19 +1,21 @@
 buildscript {
     repositories {
         google()
-        maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath Depends.gradle.android
-        classpath Depends.gradle.kotlin
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.29-alpha'
     }
 }
 
 plugins {
+    id 'com.google.protobuf' version '0.8.13' apply false
+    id 'org.gradle.android.cache-fix' version '1.0.11' apply false
+    id 'org.jetbrains.kotlin.android' version '1.4.10' apply false
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10' apply false
     id 'org.sonarqube' version '3.0'
 }
 
@@ -26,11 +28,11 @@ sonarqube {
 allprojects {
     repositories {
         google()
-        mavenCentral()
         jcenter()
+        mavenCentral()
 
         maven {
-            name = 'GitHubPackages'
+            name = 'AndroidLogger'
             url 'https://maven.pkg.github.com/sukawasatoru/android-logger'
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
@@ -42,12 +44,12 @@ allprojects {
 
 def setupAndroidPlugin = { isCi, project ->
     project.android {
-        compileSdkVersion Versions.manifest.compileSdk
-        buildToolsVersion Versions.manifest.buildTools
+        compileSdkVersion 30
+        buildToolsVersion '30.0.2'
 
         defaultConfig {
-            minSdkVersion Versions.manifest.minSdk
-            targetSdkVersion Versions.manifest.targetSdk
+            minSdkVersion 24
+            targetSdkVersion 30
         }
 
         dexOptions {
@@ -55,17 +57,25 @@ def setupAndroidPlugin = { isCi, project ->
         }
 
         compileOptions {
+            coreLibraryDesugaringEnabled true
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
         }
+    }
+
+    project.dependencies {
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     }
 }.curry(System.getenv('CI') == 'true')
 
 def setupKotlinAndroidPlugin = { project ->
     project.android {
         sourceSets {
+            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+            debug.java.srcDirs += 'src/debug/kotlin'
             main.java.srcDirs += 'src/main/kotlin'
             test.java.srcDirs += 'src/test/kotlin'
+            testDebug.java.srcDirs += 'src/testDebug/kotlin'
         }
 
         kotlinOptions {
