@@ -25,6 +25,11 @@ android {
 }
 
 dependencies {
+    implementation Depends.androidx.fragment
+    implementation Depends.androidx.leanback
+    implementation Depends.androidx.lifecycleRuntime
+    implementation Depends.androidx.navigationFragment
+    implementation Depends.androidx.navigationUi
     implementation Depends.kotlin.stdlib
     implementation Depends.tinyport.logger
 }

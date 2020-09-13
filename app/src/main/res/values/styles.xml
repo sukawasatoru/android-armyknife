@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <!-- for AbstractDetailsDescriptionPresenter. -->
+    <integer name="lb_details_description_body_max_lines">100</integer>
+    <integer name="lb_details_description_body_min_lines">100</integer>
+
+    <style name="AppBaseTheme" parent="Theme.Leanback" />
+
+    <style name="AppTheme" parent="AppBaseTheme" />
+
+    <style name="AppTheme.Details" parent="Theme.Leanback.Details.NoSharedElementTransition">
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowBackground">@color/lb_background_protection</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.MainActivity" parent="Theme.Leanback.VerticalGrid" />
+</resources>

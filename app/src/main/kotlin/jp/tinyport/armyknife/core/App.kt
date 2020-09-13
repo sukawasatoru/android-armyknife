@@ -11,5 +11,6 @@ class App : Application() {
         super.onCreate()
 
         log.addDestination(ConsoleLogDestination("ArmyKnife"))
+        log.info("Hello")
     }
 }
