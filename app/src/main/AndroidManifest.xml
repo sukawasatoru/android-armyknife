@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.keystore.KeyStoreActivity"
+            android:name=".DetailActivity"
             android:theme="@style/AppTheme.Details" />
     </application>
 </manifest>

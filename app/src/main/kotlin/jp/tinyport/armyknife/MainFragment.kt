@@ -12,8 +12,25 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import jp.tinyport.armyknife.core.log
 
-private sealed class ItemCommand {
+sealed class ItemCommand {
+    companion object {
+        fun fromId(id: Int): ItemCommand? {
+            return when (id) {
+                0 -> ItemCommand.KeyStore
+                1 -> ItemCommand.FragmentLifecycle
+                else -> null
+            }
+        }
+    }
+
+    val id: Int
+        get() = when (this) {
+            KeyStore -> 0
+            FragmentLifecycle -> 1
+        }
+
     object KeyStore : ItemCommand()
+    object FragmentLifecycle : ItemCommand()
 }
 
 private object MenuPresenter : Presenter() {
@@ -28,6 +45,7 @@ private object MenuPresenter : Presenter() {
         vh.cardView.setMainImageDimensions(640, 0)
         vh.cardView.titleText = when (command) {
             ItemCommand.KeyStore -> "KeyStore"
+            ItemCommand.FragmentLifecycle -> "FragmentLifecycle"
         }
     }
 
@@ -52,16 +70,17 @@ class MainFragment : VerticalGridSupportFragment() {
         }
 
         adapter = ArrayObjectAdapter(MenuPresenter).apply {
-            setItems(listOf(ItemCommand.KeyStore), null)
+            setItems(listOf(
+                    ItemCommand.KeyStore,
+                    ItemCommand.FragmentLifecycle),
+                    null)
         }
 
         setOnItemViewClickedListener { _, item, _, _ ->
             log.debug("[MainFragment] onItemViewClicked")
 
             val command = item as ItemCommand
-            when (command) {
-                ItemCommand.KeyStore -> nav.navigate(R.id.action_mainFragment_to_keyStoreActivity)
-            }.let { }
+            nav.navigate(MainFragmentDirections.actionMainFragmentToDetailActivity(command.id))
         }
     }
 

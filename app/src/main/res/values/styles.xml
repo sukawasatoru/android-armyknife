@@ -11,7 +11,7 @@
 
     <style name="AppTheme.Details" parent="Theme.Leanback.Details.NoSharedElementTransition">
         <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowBackground">@color/lb_background_protection</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
 

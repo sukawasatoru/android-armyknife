@@ -7,11 +7,15 @@
         android:name="jp.tinyport.armyknife.MainFragment"
         android:label="MainFragment">
         <action
-            android:id="@+id/action_mainFragment_to_keyStoreActivity"
-            app:destination="@id/keyStoreActivity" />
+            android:id="@+id/action_mainFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
     </fragment>
     <activity
-        android:id="@+id/keyStoreActivity"
-        android:name="jp.tinyport.armyknife.feature.keystore.KeyStoreActivity"
-        android:label="KeyStoreActivity" />
+        android:id="@+id/detailActivity"
+        android:name="jp.tinyport.armyknife.DetailActivity"
+        android:label="DetailActivity">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </activity>
 </navigation>

@@ -42,7 +42,6 @@ class KeyStoreFragment : DetailsSupportFragment() {
                 vh.subtitle.text = i.subtitle
             }
         }).apply {
-            initialState = FullWidthDetailsOverviewRowPresenter.STATE_HALF
             setOnActionClickedListener {
                 val action = it as DetailsAction
                 when (action) {

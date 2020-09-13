@@ -1,7 +1,8 @@
 plugins {
+    id 'org.gradle.android.cache-fix'
     id 'com.android.application'
     id 'kotlin-android'
-    id 'org.gradle.android.cache-fix'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
